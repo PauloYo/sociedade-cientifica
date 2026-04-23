@@ -1,0 +1,65 @@
+pesquisa
+	descricao
+	data de inicio 
+	data de termino efetiva
+	data de termino prevista
+	area de pesquisa
+	coordenador (obj)
+	
+coordenador
+	nome
+	email
+	instituicao
+	endereco (obj)
+	
+endereco
+	numero
+	logradouro
+	bairro
+	cidade
+	estado
+
+publicacao
+	titulo
+	ano
+	autores
+	ISBN
+
+tese
+	grau (Grad - Graduação, Esp - Especialização, MSc – Mestrado em Ciência, DSc – Doutorado em Ciência, PhD – Doutor em Filosofia, etc...)
+	instituicao de defesa
+	
+livros
+	editora (obj)
+	
+	
+editora
+	codigo
+	nome
+	local de publicacao
+	
+artigos e conferencias
+	nome do periodico
+	volume
+	numero
+
+software e tutoriais
+	nome
+	descricao
+	empresa ou pessoa
+	equipamento
+	url
+	arquivos
+	
+	
+	
+	
+	
+
+	
+	
+	
+	
+	
+	
+			
