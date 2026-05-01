@@ -1,0 +1,29 @@
+{
+  "_id": "ObjectId",
+  "titulo": "Banco de Dados Modernos",
+  "ano": 2023,
+  "isbn": "978-123",
+
+  "area": {
+    "id": "ObjectId",
+    "nome": "Banco de Dados"
+  },
+
+  "autores": [
+    { "nome": "Paulo Lopes" },
+    { "nome": "Maria Souza" }
+  ],
+
+  "tipo": "livro",
+
+  "livro": {
+    "editora": {
+      "id": "ObjectId",
+      "nome": "Editora Atlas"
+    },
+    "local_publicacao": {
+      "cidade": "São Paulo",
+      "uf": "SP"
+    }
+  }
+}

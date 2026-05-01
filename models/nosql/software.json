@@ -1,0 +1,35 @@
+{
+  "_id": "ObjectId",
+  "nome": "Simulador de Redes",
+  "descricao": "Simulação de redes computacionais",
+
+  "responsavel": "Cisco",
+
+  "contato": {
+    "endereco": {
+      "logradouro": "Av Central",
+      "numero": 500,
+      "cidade": "São Paulo",
+      "uf": "SP"
+    }
+  },
+
+  "equipamento": "PC",
+
+  "url": "https://software.com",
+
+  "area": {
+    "nome": "Redes"
+  },
+
+  "arquivos": [
+    {
+      "nome": "setup.exe",
+      "caminho": "/downloads/setup.exe"
+    },
+    {
+      "nome": "manual.pdf",
+      "caminho": "/docs/manual.pdf"
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "_id": "ObjectId",
+  "titulo": "Redes Neurais Avançadas",
+  "ano": 2024,
+
+  "tipo": "artigo",
+
+  "area": {
+    "nome": "IA"
+  },
+
+  "autores": [
+    { "nome": "Ana Lima" }
+  ],
+
+  "artigo": {
+    "nome_periodico": "IEEE",
+    "volume": "10",
+    "numero": "2"
+  }
+}

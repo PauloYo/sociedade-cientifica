@@ -1,0 +1,116 @@
+Estado
+	idEstado
+	uf
+
+Cidade
+	idCidade
+	nomCidad
+	Estado_idEstado
+
+Bairro
+	idBairro
+	nomBairr
+	Cidade_idCidade
+
+Endereco
+	idEnder
+	tipoLogradouro
+	nomeLogradouro
+	numero
+	complemento
+	cep
+	Bairro_idBairro
+
+Coordenador
+	idCordenador
+	nomeCoordenador
+	emailCoordenador
+	instituiçãoCoordenador
+	Endereco_idEnder
+
+AreaPesquisa
+	idArPes
+	nomeArPes
+
+Pesquisa
+	idPesquisa
+	nomPesquisa
+	descPesquisa
+	dataInicio
+	dataFimEfetiva
+	dataFimPrevista
+	Coordenador_idCordenador
+	AreaPesquisa_idArPes
+
+Publicacao
+	idPublicacao
+	titulo
+	ano
+	isbn
+
+Autor
+	idAutor
+	nomeAutor
+
+Publicacao_has_Autor
+	Publicacao_idPublicacao
+	Autor_idAutor
+
+Instituicao
+	idInst
+	instituicao
+
+Grau
+	idGrau
+	grau
+
+Tese
+	idTese
+	Instituicao_idInst
+	Grau_idGrau
+	-- idTese referencia Publicacao.idPublicacao 
+
+Editora
+	idEditora
+	nome
+
+Livro
+	idLivro
+	Cidade_idCidade
+	Editora_idEditora
+	-- idLivro referencia Publicacao.idPublicacao
+
+Arquivo
+	idArquivo
+	nome
+	caminho
+
+SoftwareTutorial
+	idSoftTutr
+	nome
+	descricao
+	responsavel
+	equipamento
+	url
+	Endereco_idEnder
+	Arquivo_idArquivo
+
+Artigo
+	idArtigo
+	nomePeriodico
+	volume
+	numero
+	-- idArtigo referencia Publicacao.idPublicacao
+
+	
+	
+			
+
+
+
+
+
+
+
+
+

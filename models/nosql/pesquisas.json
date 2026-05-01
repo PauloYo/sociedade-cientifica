@@ -1,0 +1,30 @@
+{
+  "_id": "ObjectId",
+  "nome": "IA aplicada à saúde",
+  "descricao": "Uso de IA para diagnóstico",
+
+  "datas": {
+    "inicio": "2024-01-01",
+    "fim_prevista": "2025-01-01",
+    "fim_efetiva": null
+  },
+
+  "coordenador": {
+    "nome": "João Silva",
+    "email": "joao@email.com",
+    "instituicao": "UFES",
+    "endereco": {
+      "logradouro": "Rua A",
+      "numero": 123,
+      "bairro": "Centro",
+      "cidade": "Vitória",
+      "uf": "ES",
+      "cep": "29000-000"
+    }
+  },
+
+  "area": {
+    "id": "ObjectId",
+    "nome": "Inteligência Artificial"
+  }
+}

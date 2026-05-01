@@ -1,0 +1,20 @@
+{
+  "_id": "ObjectId",
+  "titulo": "Deep Learning Médico",
+  "ano": 2024,
+
+  "tipo": "tese",
+
+  "area": {
+    "nome": "IA"
+  },
+
+  "autores": [
+    { "nome": "João Silva" }
+  ],
+
+  "tese": {
+    "grau": "MSc",
+    "instituicao": "UFES"
+  }
+}
