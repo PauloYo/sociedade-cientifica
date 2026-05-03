@@ -4,7 +4,7 @@ from pymongo.server_api import ServerApi
 from os import getenv
 from dotenv import load_dotenv
 
-ENV_PATH = './.env'
+ENV_PATH = 'src/backend/.env'
 load_dotenv(dotenv_path=ENV_PATH)
 uri = getenv("MONGODB_URI")
 
