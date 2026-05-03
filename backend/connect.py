@@ -3,8 +3,9 @@ from pymongo.server_api import ServerApi
 
 from os import getenv
 from dotenv import load_dotenv
-load_dotenv()
 
+ENV_PATH = './.env'
+load_dotenv(dotenv_path=ENV_PATH)
 uri = getenv("MONGODB_URI")
 
 # Create a new client and connect to the server
