@@ -1,126 +1,130 @@
 {
-    "_id": "ObjectId",
-    "dscNomeArea": "Area",
+  "codArea": "ObjectId",
+  "nomArea": "Area",
 
-    "pesqs": [
-        {
-            "_id": "ObjectId",
-            "nome": "IA aplicada à saúde",
-            "descricao": "Uso de IA para diagnóstico",
+  "pesquisa": [
+    {
+      "codPesq": "ObjectId",
+      "nomPesq": "IA aplicada à saúde",
+      "dscPesq": "Uso de IA para diagnóstico",
 
-            "datas": {
-                "inicio": "2024-01-01",
-                "fim_prevista": "2025-01-01",
-                "fim_efetiva": null
-            },
+      "datInicPesq": "2024-01-01",
+      "datFimPrevPesq": "2025-01-01",
+      "datFimEfetPesq": null,
 
-            "coordenador": {
-                "nome": "João Silva",
-                "email": "joao@email.com",
-                "instituicao": "UFES",
-                "endereco": {
-                "logradouro": "Rua A",
-                "numero": 123,
-                "bairro": "Centro",
-                "cidade": "Vitória",
-                "uf": "ES",
-                "cep": "29000-000"
-                }
-            }
+      "crdn": {
+        "nomCrdn": "João Silva",
+        "dscEmailCrdn": "joao@email.com",
+        "nomInstCrdn": "UFES",
+
+        "endr": {
+          "dscLogradEndr": "Rua A",
+          "numLogradEndr": 123,
+          "nomBairroEndr": "Centro",
+          "nomCidEndr": "Vitória",
+          "sglUfEndr": "ES",
+          "numCepEndr": "29000-000"
         }
-    ],
+      }
+    }
+  ],
 
-    "publs": [
+  "publicacao": [
+    {
+      "codPubl": "ObjectId",
+      "nomTitPubl": "Redes Neurais Avançadas",
+      "numAnoPubl": 2024,
+      "dscTipoPubl": "artigo",
+
+      "autrs": [
         {
-            "_id": "ObjectId",
-            "titulo": "Redes Neurais Avançadas",
-            "ano": 2024,
+          "nomAutr": "Ana Lima"
+        }
+      ],
 
-            "tipo": "artigo",
+      "artg": {
+        "nomPeriodArtg": "IEEE",
+        "numVolumeArtg": "10",
+        "numEdicArtg": "2"
+      }
+    },
+    {
+      "codPubl": "ObjectId",
+      "nomTitPubl": "Deep Learning Médico",
+      "numAnoPubl": 2024,
+      "dscTipoPubl": "tese",
 
-            "autores": [
-                { "nome": "Ana Lima" }
-            ],
+      "autrs": [
+        {
+          "nomAutr": "João Silva"
+        }
+      ],
 
-            "artigo": {
-                "nome_periodico": "IEEE",
-                "volume": "10",
-                "numero": "2"
-            }
+      "tese": {
+        "dscGrauTese": "MSc",
+        "nomInstTese": "UFES"
+      }
+    },
+    {
+      "codPubl": "ObjectId",
+      "nomTitPubl": "Banco de Dados Modernos",
+      "numAnoPubl": 2023,
+      "codISBNPubl": "978-123",
+      "dscTipoPubl": "livro",
+
+      "autrs": [
+        {
+          "nomAutr": "Paulo Lopes"
         },
         {
-            "_id": "ObjectId",
-            "titulo": "Deep Learning Médico",
-            "ano": 2024,
+          "nomAutr": "Maria Souza"
+        }
+      ],
 
-            "tipo": "tese",
+      "livr": {
+        "edtr": {
+          "codEdtr": "ObjectId",
+          "nomEdtr": "Editora Atlas"
+        },
 
-            "autores": [
-                { "nome": "João Silva" }
-            ],
+        "locPb": {
+          "nomCidLocPb": "São Paulo",
+          "sglUfLocPb": "SP"
+        }
+      }
+    }
+  ],
 
-            "tese": {
-                "grau": "MSc",
-                "instituicao": "UFES"
-            }
+  "software": [
+    {
+      "codSoft": "ObjectId",
+      "nomSoft": "Simulador de Redes",
+      "dscSoft": "Simulação de redes computacionais",
+
+      "nomRespSoft": "Cisco",
+
+      "cont": {
+        "endr": {
+          "dscLogradEndr": "Av Central",
+          "numLogradEndr": 500,
+          "nomCidEndr": "São Paulo",
+          "sglUfEndr": "SP"
+        }
+      },
+
+      "dscEquipSoft": "PC",
+      "dscUrlSoft": "https://software.com",
+
+      "arqvs": [
+        {
+          "nomArqv": "setup.exe",
+          "dscCaminArqv": "/downloads/setup.exe"
         },
         {
-            "_id": "ObjectId",
-            "titulo": "Banco de Dados Modernos",
-            "ano": 2023,
-            "isbn": "978-123",
-
-            "autores": [
-                "Paulo Lopes",
-                "Maria Souza"
-            ],
-
-            "tipo": "livro",
-
-            "livro": {
-                "editora": {
-                "id": "ObjectId",
-                "nome": "Editora Atlas"
-                },
-                "local_publicacao": {
-                "cidade": "São Paulo",
-                "uf": "SP"
-                }
-            }
+          "nomArqv": "manual.pdf",
+          "dscCaminArqv": "/docs/manual.pdf"
         }
-    ],
-
-    "softTutor": [
-        {
-            "_id": "ObjectId",
-            "nome": "Simulador de Redes",
-            "descricao": "Simulação de redes computacionais",
-
-            "responsavel": "Cisco",
-
-            "contato": {
-                "endereco": {
-                "logradouro": "Av Central",
-                "numero": 500,
-                "cidade": "São Paulo",
-                "uf": "SP"
-                }
-            },
-
-            "equipamento": "PC",
-
-            "url": "https://software.com",
-
-            "arquivos": [
-                {
-                "nome": "setup.exe",
-                "caminho": "/downloads/setup.exe"
-                },
-                {
-                "nome": "manual.pdf",
-                "caminho": "/docs/manual.pdf"
-                }
-            ]
-        }
-    ]
+      ]
+    }
+  ]
 }

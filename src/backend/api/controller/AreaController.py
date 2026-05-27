@@ -1,14 +1,29 @@
 from src.backend.api.database.connect import client
 
-class DoadorController:
+class AreaController:
     def __init__(self):
         self.db = client['db'] # Conectando ao banco sangue
-        self.colecao = self.db['doador'] # Selecionando a collection doadores
+        self.colecao = self.db['sociedadeCientifica'] 
 
-    # Projection necessário!!
-    # O fastapi encrenca com o _id: ObjectID ...
-    # TODO: Arranjar alguma forma de contornar isso futuramente.
-    def findOne(self):
-        item = self.colecao.find_one({}, {'_id':0,'idDoador':1,'nomDoador':1,"enderecoDoador.dscCidadeDoador": 1,"enderecoDoador.dscUFDoador": 1,'indTipoSangDoador': 1,'indFatoRhDoador': 1})
-        print(item)
+    def criar(self, nome):
+
+        new_item = {
+            "nomArea": nome
+            "pesquisa": []
+            "publicacao": []
+            "software": []
+        }
+
+        self.colecao.insert_one(new_item)
+        
+        return
+
+    def busca_id(self, id):
+        item = self.colecao.find_one({'codArea': id}, {
+            'codArea':0,
+            'nomArea':1,
+            'pesquisa':1,
+            "publicacao": 1,
+            "software": 1
+        })
         return item

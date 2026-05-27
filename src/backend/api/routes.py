@@ -1,5 +1,5 @@
 from fastapi import APIRouter
-
+from controller.AreaController import AreaController
 
 doadorController = DoadorController()
 
@@ -40,7 +40,7 @@ def criar_softwares_tutoriais(item):
 # Listagem
 
 @router.get("/area")
-def criar_area():
+def listar_area():
     # TODO
     return None
 
@@ -72,34 +72,39 @@ def listar_softwares_tutoriais():
 # Listagem - Filtro
 
 @router.get("/pesquisas/{area}")
-def listar_pesquisas_area(area):
+def filtrar_pesquisas_area(area):
     # TODO
     return None
 
 @router.get("/teses/{area}")
-def listar_teses_area(area):
+def filtrar_teses_area(area):
     # TODO
     return None
 
 @router.get("/livros/{area}")
-def listar_livros_area(area):
+def filtrar_livros_area(area):
     # TODO
     return None
 
 @router.get("/artigos/{area}")
-def listar_artigos_area(area):
+def filtrar_artigos_area(area):
     # TODO
     return None
 
 @router.get("/softwares-tutoriais/{area}")
-def listar_softwares_tutoriais_area(area):
+def filtrar_softwares_tutoriais_area(area):
     # TODO
     return None
     
 # Consultas - ID
 
 @router.get("/area/{id}")
-def criar_area(id):
+def buscar_area_id(id):
+    
+    return None
+
+@router.get("/area/{nome}")
+def buscar_area_nome(nome):
     # TODO
     return None
 
