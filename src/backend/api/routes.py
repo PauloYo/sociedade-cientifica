@@ -1,7 +1,5 @@
 from fastapi import APIRouter
-from controller.AreaController import AreaController
-
-doadorController = DoadorController()
+from src.backend.api.controller.AreaController import AreaController
 
 router = APIRouter()
 
@@ -42,7 +40,7 @@ def criar_softwares_tutoriais(item):
 @router.get("/area")
 def listar_area():
     # TODO
-    return None
+    return { "message": "oiii" }
 
 @router.get("/pesquisas")
 def listar_pesquisas():

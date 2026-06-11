@@ -8,9 +8,9 @@ class AreaController:
     def criar(self, nome):
 
         new_item = {
-            "nomArea": nome
-            "pesquisa": []
-            "publicacao": []
+            "nomArea": nome,
+            "pesquisa": [],
+            "publicacao": [],
             "software": []
         }
 
