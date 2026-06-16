@@ -1,0 +1,301 @@
+[
+    {
+    "codArea": "65f1a2b3c4d5e6f7a8b9c001",
+    "nomArea": "Inteligência Artificial",
+    "pesquisa": [
+        {
+        "codPesq": "65f1a2b3c4d5e6f7a8b9c002",
+        "nomPesq": "IA aplicada à saúde",
+        "dscPesq": "Uso de IA para diagnóstico precoce de patologias",
+        "datInicPesq": "2024-01-01",
+        "datFimPrevPesq": "2025-01-01",
+        "datFimEfetPesq": null,
+        "crdn": {
+            "nomCrdn": "João Silva",
+            "dscEmailCrdn": "joao@email.com",
+            "nomInstCrdn": "UFES",
+            "endr": {
+            "dscLogradEndr": "Rua A",
+            "numLogradEndr": 123,
+            "nomBairroEndr": "Centro",
+            "nomCidEndr": "Vitória",
+            "sglUfEndr": "ES",
+            "numCepEndr": "29000-000"
+            }
+        }
+        }
+    ],
+    "publicacao": [
+        {
+        "codPubl": "65f1a2b3c4d5e6f7a8b9c003",
+        "nomTitPubl": "Redes Neurais Avançadas em Exames de Imagem",
+        "numAnoPubl": 2024,
+        "dscTipoPubl": "artigo",
+        "autrs": [
+            { "nomAutr": "Ana Lima" }
+        ],
+        "artg": {
+            "nomPeriodArtg": "IEEE Journal of Biomedical Health",
+            "numVolumeArtg": "10",
+            "numEdicArtg": "2"
+        }
+        },
+        {
+        "codPubl": "65f1a2b3c4d5e6f7a8b9c004",
+        "nomTitPubl": "Deep Learning Médico Aplicado",
+        "numAnoPubl": 2024,
+        "dscTipoPubl": "tese",
+        "autrs": [
+            { "nomAutr": "João Silva" }
+        ],
+        "tese": {
+            "dscGrauTese": "MSc",
+            "nomInstTese": "UFES"
+        }
+        }
+    ],
+    "software": [
+        {
+        "codSoft": "65f1a2b3c4d5e6f7a8b9c005",
+        "nomSoft": "VisionHealth Analyzer",
+        "dscSoft": "Análise computacional de imagens de raio-x",
+        "nomRespSoft": "LabIA-UFES",
+        "cont": {
+            "endr": {
+            "dscLogradEndr": "Av Fernando Ferrari",
+            "numLogradEndr": 514,
+            "nomCidEndr": "Vitória",
+            "sglUfEndr": "ES"
+            }
+        },
+        "dscEquipSoft": "Servidor com GPU Dedicada",
+        "dscUrlSoft": "https://github.com/labia-ufes/visionhealth",
+        "arqvs": [
+            {
+            "nomArqv": "analyzer_core.py",
+            "dscCaminArqv": "/src/analyzer_core.py"
+            }
+        ]
+        }
+    ]
+    },
+    {
+    "codArea": "65f1b2b3c4d5e6f7a8b9c010",
+    "nomArea": "Banco de Dados",
+    "pesquisa": [
+        {
+        "codPesq": "65f1b2b3c4d5e6f7a8b9c011",
+        "nomPesq": "Otimização de Bancos NoSQL",
+        "dscPesq": "Estudo de performance e escalabilidade horizontal no MongoDB",
+        "datInicPesq": "2023-06-01",
+        "datFimPrevPesq": "2024-06-01",
+        "datFimEfetPesq": "2024-05-28",
+        "crdn": {
+            "nomCrdn": "Maria Souza",
+            "dscEmailCrdn": "maria.souza@unb.br",
+            "nomInstCrdn": "UNB",
+            "endr": {
+            "dscLogradEndr": "Campus Darcy Ribeiro",
+            "numLogradEndr": 0,
+            "nomBairroEndr": "Asa Norte",
+            "nomCidEndr": "Brasília",
+            "sglUfEndr": "DF",
+            "numCepEndr": "70910-900"
+            }
+        }
+        }
+    ],
+    "publicacao": [
+        {
+        "codPubl": "65f1b2b3c4d5e6f7a8b9c012",
+        "nomTitPubl": "Banco de Dados Modernos e Modelagem Documental",
+        "numAnoPubl": 2023,
+        "codISBNPubl": "978-85-352-1234-5",
+        "dscTipoPubl": "livro",
+        "autrs": [
+            { "nomAutr": "Paulo Lopes" },
+            { "nomAutr": "Maria Souza" }
+        ],
+        "livr": {
+            "edtr": {
+            "codEdtr": "65f1b2b3c4d5e6f7a8b9c013",
+            "nomEdtr": "Editora Atlas S.A."
+            },
+            "locPb": {
+            "nomCidLocPb": "São Paulo",
+            "sglUfLocPb": "SP"
+            }
+        }
+        }
+    ],
+    "software": []
+    },
+    {
+    "codArea": "65f1c2b3c4d5e6f7a8b9c020",
+    "nomArea": "Redes de Computadores",
+    "pesquisa": [
+        {
+        "codPesq": "65f1c2b3c4d5e6f7a8b9c021",
+        "nomPesq": "Segurança em Redes IoT",
+        "dscPesq": "Mitigação de ataques DDoS em arquiteturas edge computing",
+        "datInicPesq": "2024-03-15",
+        "datFimPrevPesq": "2026-03-15",
+        "datFimEfetPesq": null,
+        "crdn": {
+            "nomCrdn": "Carlos Santos",
+            "dscEmailCrdn": "carlos.santos@usp.br",
+            "nomInstCrdn": "USP",
+            "endr": {
+            "dscLogradEndr": "Av. Prof. Luciano Gualberto",
+            "numLogradEndr": 158,
+            "nomBairroEndr": "Butantã",
+            "nomCidEndr": "São Paulo",
+            "sglUfEndr": "SP",
+            "numCepEndr": "05508-010"
+            }
+        }
+        }
+    ],
+    "publicacao": [
+        {
+        "codPubl": "65f1c2b3c4d5e6f7a8b9c022",
+        "nomTitPubl": "Simulação de Protocolos de Roteamento Dinâmico",
+        "numAnoPubl": 2024,
+        "dscTipoPubl": "artigo",
+        "autrs": [
+            { "nomAutr": "Carlos Santos" },
+            { "nomAutr": "Lucas Silva" }
+        ],
+        "artg": {
+            "nomPeriodArtg": "Elsevier Computer Networks",
+            "numVolumeArtg": "42",
+            "numEdicArtg": "1"
+        }
+        }
+    ],
+    "software": [
+        {
+        "codSoft": "65f1c2b3c4d5e6f7a8b9c023",
+        "nomSoft": "Simulador de Redes IoT v1",
+        "dscSoft": "Simulação e mapeamento de tráfego de redes IoT corporativas",
+        "nomRespSoft": "Cisco Systems Brasil",
+        "cont": {
+            "endr": {
+            "dscLogradEndr": "Av Nações Unidas",
+            "numLogradEndr": 12901,
+            "nomCidEndr": "São Paulo",
+            "sglUfEndr": "SP"
+            }
+        },
+        "dscEquipSoft": "PC Windows / Linux x64",
+        "dscUrlSoft": "https://cisco.com.br/simulator",
+        "arqvs": [
+            {
+            "nomArqv": "setup.exe",
+            "dscCaminArqv": "/downloads/setup.exe"
+            },
+            {
+            "nomArqv": "manual_usuario.pdf",
+            "dscCaminArqv": "/docs/manual.pdf"
+            }
+        ]
+        }
+    ]
+    },
+    {
+    "codArea": "65f1d2b3c4d5e6f7a8b9c030",
+    "nomArea": "Engenharia de Software",
+    "pesquisa": [],
+    "publicacao": [
+        {
+        "codPubl": "65f1d2b3c4d5e6f7a8b9c031",
+        "nomTitPubl": "Análise Prática de Arquitetura de Microserviços",
+        "numAnoPubl": 2022,
+        "dscTipoPubl": "tese",
+        "autrs": [
+            { "nomAutr": "Rodrigo Mendes" }
+        ],
+        "tese": {
+            "dscGrauTese": "PhD",
+            "nomInstTese": "UNICAMP"
+        }
+        }
+    ],
+    "software": [
+        {
+        "codSoft": "65f1d2b3c4d5e6f7a8b9c032",
+        "nomSoft": "AgileTracker API",
+        "dscSoft": "API Restful para monitoramento de métricas ágeis Scrum e Kanban",
+        "nomRespSoft": "DevCommunity OpenSource",
+        "cont": {
+            "endr": {
+            "dscLogradEndr": "Rua Voluntários da Pátria",
+            "numLogradEndr": 400,
+            "nomCidEndr": "Campinas",
+            "sglUfEndr": "SP"
+            }
+        },
+        "dscEquipSoft": "Ambiente Docker",
+        "dscUrlSoft": "https://api.agiletracker.org",
+        "arqvs": [
+            {
+            "nomArqv": "docker-compose.yml",
+            "dscCaminArqv": "/deploy/docker-compose.yml"
+            }
+        ]
+        }
+    ]
+    }
+    ,
+    {
+    "codArea": "65f1e2b3c4d5e6f7a8b9c040",
+    "nomArea": "Computação Gráfica",
+    "pesquisa": [
+        {
+        "codPesq": "65f1e2b3c4d5e6f7a8b9c041",
+        "nomPesq": "Metaverso e Inclusão Social",
+        "dscPesq": "Desenvolvimento de interfaces acessíveis para cadeirantes em ambientes VR",
+        "datInicPesq": "2025-01-10",
+        "datFimPrevPesq": "2026-06-30",
+        "datFimEfetPesq": null,
+        "crdn": {
+            "nomCrdn": "Roberto Justo",
+            "dscEmailCrdn": "rjusto@ufrj.br",
+            "nomInstCrdn": "UFRJ",
+            "endr": {
+            "dscLogradEndr": "Av. Athos da Silveira Ramos",
+            "numLogradEndr": 274,
+            "nomBairroEndr": "Ilha do Fundão",
+            "nomCidEndr": "Rio de Janeiro",
+            "sglUfEndr": "RJ",
+            "numCepEndr": "21941-916"
+            }
+        }
+        }
+    ],
+    "publicacao": [
+        {
+        "codPubl": "65f1e2b3c4d5e6f7a8b9c042",
+        "nomTitPubl": "Fundamentos de Renderização em Tempo Real",
+        "numAnoPubl": 2025,
+        "codISBNPubl": "978-85-212-9999-0",
+        "dscTipoPubl": "livro",
+        "autrs": [
+            { "nomAutr": "Roberto Justo" },
+            { "nomAutr": "Felipe Neto" }
+        ],
+        "livr": {
+            "edtr": {
+            "codEdtr": "65f1e2b3c4d5e6f7a8b9c043",
+            "nomEdtr": "Editora LTC"
+            },
+            "locPb": {
+            "nomCidLocPb": "Rio de Janeiro",
+            "sglUfLocPb": "RJ"
+            }
+        }
+        }
+    ],
+    "software": []
+    }
+]
