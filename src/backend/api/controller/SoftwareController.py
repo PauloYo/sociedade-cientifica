@@ -1,13 +1,13 @@
 from src.backend.api.database.connect import client
 
-class AreaController:
+class SoftwareController:
     def __init__(self):
         self.db = client['db'] # Conectando ao banco sangue
         self.colecao = self.db['sociedade-cientifica'] 
 
     def listar_todos(self):
         # Ordenando por Nome da pesquisa ASC
-        itens = self.colecao.find({},{ "_id": 0, "codArea": 1, "nomArea": 1}).sort({ "nomArea": 1})
+        itens = self.colecao.find({},{ "_id": 0, "software": 1}).sort({ "software.nomSoft": 1})
 
         return itens
 

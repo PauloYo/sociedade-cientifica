@@ -1,5 +1,10 @@
 from fastapi import APIRouter
+from bson import json_util
+
 from src.backend.api.controller.AreaController import AreaController
+from src.backend.api.controller.PesquisaController import PesquisaController
+from src.backend.api.controller.DocumentoController import DocumentoController
+from src.backend.api.controller.SoftwareController import SoftwareController
 
 router = APIRouter()
 
@@ -37,15 +42,23 @@ def criar_softwares_tutoriais(item):
 
 # Listagem
 
-@router.get("/area")
-def listar_area():
-    # TODO
-    return { "message": "oiii" }
+@router.get("/documentos")
+def listar_todos():
+    docController = DocumentoController()
+    lista = docController.listar_todos()
+    return { "status": "ok", "response": json_util.dumps(lista, ensure_ascii=False) }
 
 @router.get("/pesquisas")
-def listar_pesquisas():
-    # TODO
-    return None 
+def listar_area():
+    pesqController = PesquisaController()
+    lista = pesqController.listar_todos()
+    return { "status": "ok", "response": json_util.dumps(lista, ensure_ascii=False) }
+
+@router.get("/areas")
+def listar_area():
+    areaController = AreaController()
+    lista = areaController.listar_todos()
+    return { "status": "ok", "response": json_util.dumps(lista, ensure_ascii=False) }
 
 @router.get("/teses")
 def listar_teses():
@@ -64,8 +77,9 @@ def listar_artigos():
 
 @router.get("/softwares-tutoriais")
 def listar_softwares_tutoriais():
-    # TODO
-    return None
+    softwareController = SoftwareController()
+    lista = softwareController.listar_todos()
+    return { "status": "ok", "response": json_utils.dump(lista, ensure_ascii=False) }
 
 # Listagem - Filtro
 
