@@ -16,7 +16,7 @@ BREADCRUMBS_MAP: dict[str, list[tuple[str, str | None]]] = {
 
 
 def page_wrapper(
-    *children: rx.Component,
+    children: list[rx.Component],
     breadcrumbs_key: str | None = None,
     breadcrumbs_items: list[tuple[str, str | None]] | None = None,
 ) -> rx.Component:
