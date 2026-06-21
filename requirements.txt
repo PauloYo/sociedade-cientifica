@@ -1,4 +1,9 @@
+# Backend (FastAPI + MongoDB)
 fastapi
 uvicorn
 python-dotenv
 pymongo
+
+# Frontend (Reflex)
+reflex
+httpx
