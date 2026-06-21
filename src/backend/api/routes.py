@@ -1,9 +1,9 @@
 from fastapi import APIRouter
-from bson import json_util
 
 from src.backend.api.controller.AreaController import AreaController
-from src.backend.api.controller.PesquisaController import PesquisaController
 from src.backend.api.controller.DocumentoController import DocumentoController
+from src.backend.api.controller.PesquisaController import PesquisaController
+from src.backend.api.controller.PublicacaoController import PublicacaoController
 from src.backend.api.controller.SoftwareController import SoftwareController
 
 router = APIRouter()
@@ -46,19 +46,19 @@ def criar_softwares_tutoriais(item):
 def listar_todos():
     docController = DocumentoController()
     lista = docController.listar_todos()
-    return { "status": "ok", "response": json_util.dumps(lista, ensure_ascii=False) }
+    return { "status": "ok", "dados": lista }
 
 @router.get("/pesquisas")
 def listar_area():
     pesqController = PesquisaController()
     lista = pesqController.listar_todos()
-    return { "status": "ok", "response": json_util.dumps(lista, ensure_ascii=False) }
+    return { "status": "ok", "dados": lista }
 
 @router.get("/areas")
 def listar_area():
     areaController = AreaController()
     lista = areaController.listar_todos()
-    return { "status": "ok", "response": json_util.dumps(lista, ensure_ascii=False) }
+    return { "status": "ok", "dados": lista }
 
 @router.get("/teses")
 def listar_teses():
@@ -79,9 +79,63 @@ def listar_artigos():
 def listar_softwares_tutoriais():
     softwareController = SoftwareController()
     lista = softwareController.listar_todos()
-    return { "status": "ok", "response": json_utils.dump(lista, ensure_ascii=False) }
+    return { "status": "ok", "dados": lista }
 
 # Listagem - Filtro
+@router.get("/documento/{idString}")
+def busca_doc(idString):
+    docController = DocumentoController()
+    item = docController.busca_doc_por_id(idString)
+
+    return { "dados": item }
+
+
+@router.get("/documentos/{busca}")
+def busca_geral(busca):
+
+    areaController = AreaController()
+    pesqController = PesquisaController()
+    publController = PublicacaoController()
+    softwareController = SoftwareController()
+
+    areas = areaController.busca_doc_por_nome_area(busca)
+
+    pesqsNome = pesqController.busca_doc_por_nome_desc_pesquisa(busca)
+    pesqsEmail = pesqController.busca_doc_por_nome_email_crdn_pesquisa(busca)
+    pesqsInst = pesqController.busca_doc_por_instituicao_crdn_pesquisa(busca)
+
+    publsTitulo = publController.busca_doc_por_titulo_publicacao(busca)
+    publsAutor = publController.busca_doc_por_nome_autor_publicacao(busca)
+
+    softs = softwareController.busca_doc_por_nome_desc_software(busca)
+
+    busca_geral = areas + pesqsNome + pesqsEmail + pesqsInst + publsTitulo + publsAutor + softs
+
+    # Remove duplicados mantendo apenas um documento por ID único
+    # vistos = set()
+    # busca_geral_unica = []
+
+    # for doc in [areas, pesqsNome, pesqsEmail, pesqsInst, publsTitulo, publsAutor, softs]:
+    #     print(doc)
+    #     # Se o documento tiver um _id e ele ainda não foi adicionado
+    #     if doc:
+    #         if doc.get("_id") not in vistos:
+    #             print(doc.get("_id"))
+    #             print(doc["_id"])
+    #             vistos.add(doc["_id"])
+    #             busca_geral_unica.append(doc)
+
+    # return {
+    #     # "response": json_util.dumps(busca_geral),
+    #     "areas": areas,
+    #     "pesqsNome": pesqsNome,
+    #     "pesqsEmail": pesqsEmail,
+    #     "pesqsInst": pesqsInst,
+    #     "publsTitulo": publsTitulo,
+    #     "publsAutor": publsAutor,
+    #     "softs": softs
+    # }
+    return { "dados": busca_geral }
 
 @router.get("/pesquisas/{area}")
 def filtrar_pesquisas_area(area):

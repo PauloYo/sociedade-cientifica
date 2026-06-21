@@ -1,4 +1,5 @@
 from src.backend.api.database.connect import client
+from src.utils.toJson import toJson
 
 class PesquisaController:
     def __init__(self):
@@ -7,9 +8,12 @@ class PesquisaController:
 
     def listar_todos(self):
         # Ordenando por Nome da pesquisa ASC
-        itens = self.colecao.find({},{ "_id": 0, "pesquisa": 1}).sort({ "pesquisa.nomPesq": 1})
+        itens = self.colecao.find(
+            {},
+            { "_id": 0, "pesquisa": 1 }
+        ).sort({ "pesquisa.nomPesq": 1 })
 
-        return itens
+        return toJson(itens)
 
     def busca_id(self, id):
         item = self.colecao.find_one({'codArea': id}, {
@@ -19,4 +23,36 @@ class PesquisaController:
             "publicacao": 1,
             "software": 1
         })
-        return item
+        return toJson(item)
+
+    def busca_doc_por_nome_desc_pesquisa(self, nome):
+        itens = self.colecao.find(
+            { 
+                "$or": [
+                    { "pesquisa.nomPesq": { "$regex": nome, "$options": "i" }},
+                    { "pesquisa.dscPesq": { "$regex": nome, "$options": "i" }}
+                ]
+            }
+        ).sort({ "pesquisa.nomPesq": 1 })
+        return toJson(itens)
+
+    def busca_doc_por_nome_email_crdn_pesquisa(self, nome):
+        itens = self.colecao.find(
+            { 
+                "$or": [
+                    { "pesquisa.crdn.nomCrdn": { "$regex": nome, "$options": "i" }},
+                    { "pesquisa.crdn.dscEmailCrdn": { "$regex": nome, "$options": "i" }}
+                ]
+            }
+        ).sort({ "pesquisa.nomCrdn": 1 })
+        return toJson(itens)
+
+    def busca_doc_por_instituicao_crdn_pesquisa(self, inst):
+        itens = self.colecao.find(
+            { 
+                "$or": [
+                    { "pesquisa.crdn.nomInstCrdn": { "$regex": inst, "$options": "i" }},
+                ]
+            }
+        ).sort({ "pesquisa.nomPesq": 1 })
+        return toJson(itens)

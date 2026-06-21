@@ -1,4 +1,5 @@
 from src.backend.api.database.connect import client
+from src.utils.toJson import toJson
 
 class SoftwareController:
     def __init__(self):
@@ -7,9 +8,12 @@ class SoftwareController:
 
     def listar_todos(self):
         # Ordenando por Nome da pesquisa ASC
-        itens = self.colecao.find({},{ "_id": 0, "software": 1}).sort({ "software.nomSoft": 1})
+        itens = self.colecao.find(
+            {},
+            { "_id": 0, "software": 1 }
+        ).sort({ "software.nomSoft": 1 })
 
-        return itens
+        return toJson(itens)
 
     def busca_id(self, id):
         item = self.colecao.find_one({'codArea': id}, {
@@ -19,4 +23,15 @@ class SoftwareController:
             "publicacao": 1,
             "software": 1
         })
-        return item
+        return toJson(item)
+
+    def busca_doc_por_nome_desc_software(self, nome):
+        itens = self.colecao.find(
+            { 
+                "$or": [
+                    { "software.nomSoft": { "$regex": nome, "$options": "i" }},
+                    { "software.dscSoft": { "$regex": nome, "$options": "i" }}
+                ]
+            }
+        ).sort({ "software.nomSoft": 1 })
+        return toJson(itens)

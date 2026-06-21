@@ -1,4 +1,6 @@
 from src.backend.api.database.connect import client
+from bson.objectid import ObjectId
+from src.utils.toJson import toJson
 
 class DocumentoController:
     def __init__(self):
@@ -95,6 +97,9 @@ class DocumentoController:
     def listar_todos(self):
         # Ordenando por Nome da pesquisa ASC
         itens = self.colecao.find({}).sort({ "pesquisa.nomPesq": 1 })
-        # itens = self.colecao.find({})
 
-        return itens
+        return toJson(itens)
+
+    def busca_doc_por_id(self, id_string):
+        item = self.colecao.find_one({"_id": ObjectId(id_string)})
+        return toJson(item)
