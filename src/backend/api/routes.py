@@ -5,6 +5,7 @@ from src.backend.api.controller.DocumentoController import DocumentoController
 from src.backend.api.controller.PesquisaController import PesquisaController
 from src.backend.api.controller.PublicacaoController import PublicacaoController
 from src.backend.api.controller.SoftwareController import SoftwareController
+from src.backend.api.utils.serializer import parse_mongo
 
 router = APIRouter()
 
@@ -43,22 +44,22 @@ def criar_softwares_tutoriais(item):
 # Listagem
 
 @router.get("/documentos")
-def listar_todos():
+def listar_documentos():
     docController = DocumentoController()
     lista = docController.listar_todos()
-    return { "status": "ok", "dados": lista }
+    return { "status": "ok", "response": parse_mongo(lista) }
 
 @router.get("/pesquisas")
-def listar_area():
+def listar_pesquisas():
     pesqController = PesquisaController()
     lista = pesqController.listar_todos()
-    return { "status": "ok", "dados": lista }
+    return { "status": "ok", "response": parse_mongo(lista) }
 
 @router.get("/areas")
-def listar_area():
+def listar_areas():
     areaController = AreaController()
     lista = areaController.listar_todos()
-    return { "status": "ok", "dados": lista }
+    return { "status": "ok", "response": parse_mongo(lista) }
 
 @router.get("/teses")
 def listar_teses():
@@ -79,7 +80,7 @@ def listar_artigos():
 def listar_softwares_tutoriais():
     softwareController = SoftwareController()
     lista = softwareController.listar_todos()
-    return { "status": "ok", "dados": lista }
+    return { "status": "ok", "response": parse_mongo(lista) }
 
 # Listagem - Filtro
 @router.get("/documento/{idString}")
