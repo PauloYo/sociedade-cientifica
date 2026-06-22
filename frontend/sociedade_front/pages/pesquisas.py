@@ -1,6 +1,7 @@
 import reflex as rx
 
 from ..components.layout import page_wrapper
+from ..state.app_state import AppState
 from ..styles import PAGE_HEADING
 
 
@@ -14,6 +15,10 @@ def pesquisas_page() -> rx.Component:
                 rx.button("+ Nova Pesquisa", color_scheme="blue"),
                 width="100%",
             ),
-            rx.text("Carregando pesquisas...", color_scheme="gray", size="3"),
+            rx.cond(
+                AppState.loading_pesquisas,
+                rx.text("Carregando...", color_scheme="gray", size="3"),
+                rx.text("Nenhuma pesquisa cadastrada.", color_scheme="gray", size="3"),
+            ),
         ],
     )

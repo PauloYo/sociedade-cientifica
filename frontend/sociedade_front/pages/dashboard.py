@@ -2,6 +2,7 @@ import reflex as rx
 
 from ..components.layout import page_wrapper
 from ..components.stat_card import stat_card
+from ..state.app_state import AppState
 from ..styles import PAGE_HEADING
 
 
@@ -10,14 +11,36 @@ def dashboard_page() -> rx.Component:
         breadcrumbs_key="dashboard",
         children=[
             rx.heading("Visão Geral", **PAGE_HEADING),
-            rx.grid(
-                stat_card("Áreas", "--", "📂"),
-                stat_card("Pesquisas", "--", "🔬"),
-                stat_card("Publicações", "--", "📄"),
-                stat_card("Softwares", "--", "💻"),
-                columns="4",
-                spacing="4",
-                width="100%",
+            rx.cond(
+                AppState.loading,
+                rx.text("Carregando...", color_scheme="gray", size="3"),
+                rx.grid(
+                    stat_card("Áreas", AppState.areas_count, "📂"),
+                    stat_card("Pesquisas", AppState.pesquisas_count, "🔬"),
+                    stat_card("Publicações", AppState.publicacoes_count, "📄"),
+                    stat_card("Softwares", AppState.softwares_count, "💻"),
+                    columns="4",
+                    spacing="4",
+                    width="100%",
+                ),
+            ),
+            rx.cond(
+                AppState.recent_pesquisas,
+                rx.card(
+                    rx.vstack(
+                        rx.heading("Últimas Pesquisas", size="5"),
+                        rx.foreach(
+                            AppState.recent_pesquisas,
+                            lambda p: rx.text(p.get("nomPesq", ""), size="2"),
+                        ),
+                        spacing="3",
+                        padding="1.5rem",
+                        align="start",
+                        width="100%",
+                    ),
+                    margin_top="2rem",
+                    width="100%",
+                ),
             ),
             rx.card(
                 rx.vstack(
