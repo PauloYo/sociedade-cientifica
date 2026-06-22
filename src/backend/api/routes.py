@@ -88,7 +88,7 @@ def busca_doc(idString):
     docController = DocumentoController()
     item = docController.busca_doc_por_id(idString)
 
-    return { "dados": item }
+    return { "dados": parse_mongo(item) }
 
 
 @router.get("/documentos/{busca}")
@@ -167,8 +167,9 @@ def filtrar_softwares_tutoriais_area(area):
 
 @router.get("/area/{id}")
 def buscar_area_id(id):
-    
-    return None
+    areaController = AreaController()
+    item = areaController.busca_id(id)
+    return { "status": "ok", "response": parse_mongo(item) if item else None }
 
 @router.get("/area/{nome}")
 def buscar_area_nome(nome):
