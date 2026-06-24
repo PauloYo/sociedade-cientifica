@@ -86,27 +86,11 @@ def busca_doc(idString: str):
     item = docController.busca_doc_por_id(idString)
     return {"dados": parse_mongo(item)}
 
-
 @router.get("/documentos/{busca}")
-def busca_geral(busca: str):
-    areaController = AreaController()
-    pesqController = PesquisaController()
-    publController = PublicacaoController()
-    softwareController = SoftwareController()
-
-    areas = areaController.busca_doc_por_nome_area(busca)
-    pesqsNome = pesqController.busca_doc_por_nome_desc_pesquisa(busca)
-    pesqsEmail = pesqController.busca_doc_por_nome_email_crdn_pesquisa(busca)
-    pesqsInst = pesqController.busca_doc_por_instituicao_crdn_pesquisa(busca)
-    publsTitulo = publController.busca_doc_por_titulo_publicacao(busca)
-    publsAutor = publController.busca_doc_por_nome_autor_publicacao(busca)
-    softs = softwareController.busca_doc_por_nome_desc_software(busca)
-
-    merged = list({parse_mongo(d) if isinstance(d, str) else d for d in
-                   areas + pesqsNome + pesqsEmail + pesqsInst +
-                   publsTitulo + publsAutor + softs})
-    return {"status": "ok", "response": merged}
-
+def busca_geral(busca):
+    docController = DocumentoController()
+    busca_geral = docController.busca_geral_por_texto(busca)
+    return { "status": "ok", "dados": parse_mongo(busca_geral) }
 
 @router.get("/area/{id}")
 def buscar_area_id(id: str):

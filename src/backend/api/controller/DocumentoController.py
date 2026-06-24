@@ -102,3 +102,22 @@ class DocumentoController:
     def busca_doc_por_id(self, id_string):
         item = self.colecao.find_one({"_id": ObjectId(id_string)})
         return toJson(item)
+
+    def busca_geral_por_texto(self, texto):
+        item = self.colecao.find(
+            { 
+                "$or": [
+                    { "nomArea": { "$regex": texto, "$options": "i" }},
+                    { "pesquisa.nomPesq": { "$regex": texto, "$options": "i" }},
+                    { "pesquisa.dscPesq": { "$regex": texto, "$options": "i" }},
+                    { "pesquisa.crdn.nomCrdn": { "$regex": texto, "$options": "i" }},
+                    { "pesquisa.crdn.nomInstCrdn": { "$regex": texto, "$options": "i" }},
+                    { "pesquisa.crdn.dscEmailCrdn": { "$regex": texto, "$options": "i" }},
+                    { "publicacao.nomTitPubl": { "$regex": texto, "$options": "i" }},
+                    { "publicacao.autrs.nomAutr": { "$regex": texto, "$options": "i" }},
+                    { "software.nomSoft": { "$regex": texto, "$options": "i" }},
+                    { "software.dscSoft": { "$regex": texto, "$options": "i" }}
+                ]
+            }
+        )
+        return toJson(item)
