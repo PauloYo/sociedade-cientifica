@@ -30,6 +30,10 @@ class NovaPublicacao(BaseModel):
     livr: dict = {}
 
 
+class NovaArea(BaseModel):
+    nomArea: str = ""
+
+
 class NovoSoftware(BaseModel):
     codArea: str = ""
     nomSoft: str = ""

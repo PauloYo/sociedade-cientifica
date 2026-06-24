@@ -35,7 +35,7 @@ def areas_page() -> rx.Component:
             rx.hstack(
                 rx.heading("Áreas de Interesse", **PAGE_HEADING),
                 rx.spacer(),
-                rx.button("+ Nova Área", color_scheme="blue"),
+                rx.link(rx.button("+ Nova Área", color_scheme="blue"), href="/areas/nova"),
                 width="100%",
             ),
             rx.cond(

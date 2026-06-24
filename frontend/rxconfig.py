@@ -2,6 +2,8 @@ import reflex as rx
 
 config = rx.Config(
     app_name="sociedade_front",
+    frontend_port=3000,
+    backend_port=8005,
     plugins=[
         rx.plugins.SitemapPlugin(),
         rx.plugins.TailwindV4Plugin(),

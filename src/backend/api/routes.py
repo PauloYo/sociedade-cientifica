@@ -5,13 +5,20 @@ from src.backend.api.controller.DocumentoController import DocumentoController
 from src.backend.api.controller.PesquisaController import PesquisaController
 from src.backend.api.controller.PublicacaoController import PublicacaoController
 from src.backend.api.controller.SoftwareController import SoftwareController
-from src.backend.api.schemas import NovaPesquisa, NovaPublicacao, NovoSoftware
+from src.backend.api.schemas import NovaPesquisa, NovaPublicacao, NovoSoftware, NovaArea
 from src.backend.api.utils.serializer import parse_mongo
 
 router = APIRouter()
 
 
 # --- POST (Create) ---
+
+@router.post("/area")
+def criar_area(dados: NovaArea):
+    ctrl = DocumentoController()
+    id_ = ctrl.criar_documento(dados.model_dump())
+    return {"status": "ok", "id": id_}
+
 
 @router.post("/documento")
 def criar_documento(dados: dict):

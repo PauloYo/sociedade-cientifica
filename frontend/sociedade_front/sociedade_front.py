@@ -11,6 +11,7 @@ from .pages.softwares import softwares_page
 from .pages.nova_pesquisa import nova_pesquisa_page, NovaPesquisaState
 from .pages.nova_publicacao import nova_publicacao_page, NovaPublicacaoState
 from .pages.novo_software import novo_software_page, NovoSoftwareState
+from .pages.nova_area import nova_area_page, NovaAreaState
 from .pages.busca import busca_page
 from .state.app_state import AppState
 from .state.area_state import AreaState
@@ -42,3 +43,4 @@ app.add_page(novo_software_page, route="/softwares/novo",
              title="Novo Software | Sociedade Científica",
              on_load=NovoSoftwareState.load_areas)
 app.add_page(busca_page, route="/busca", title="Busca | Sociedade Científica")
+app.add_page(nova_area_page, route="/areas/nova", title="Nova Área | Sociedade Científica")
