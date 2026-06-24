@@ -8,9 +8,15 @@ from .pages.area_detail import area_detail_page, AreaDetailState
 from .pages.pesquisas import pesquisas_page
 from .pages.publicacoes import publicacoes_page
 from .pages.softwares import softwares_page
+from .pages.nova_pesquisa import nova_pesquisa_page, NovaPesquisaState
+from .pages.nova_publicacao import nova_publicacao_page, NovaPublicacaoState
+from .pages.novo_software import novo_software_page, NovoSoftwareState
+from .pages.busca import busca_page
 from .state.app_state import AppState
 from .state.area_state import AreaState
 from .state.pesquisa_state import PesquisaState
+from .state.publicacao_state import PublicacaoState
+from .state.software_state import SoftwareState
 
 app = rx.App()
 
@@ -24,6 +30,15 @@ app.add_page(area_detail_page, route="/areas/[area_id]",
 app.add_page(pesquisas_page, route="/pesquisas", title="Pesquisas | Sociedade Científica",
              on_load=PesquisaState.load_pesquisas)
 app.add_page(publicacoes_page, route="/publicacoes", title="Publicações | Sociedade Científica",
-             on_load=AppState.load_publicacoes)
-app.add_page(softwares_page, route="/softwares", title="Softwares | Sociedade Científica",
-             on_load=AppState.load_softwares)
+             on_load=PublicacaoState.load_publicacoes)
+app.add_page(softwares_page, route="/softwares", title="Softwares & Tutoriais | Sociedade Científica",
+             on_load=SoftwareState.load_softwares)
+app.add_page(nova_pesquisa_page, route="/pesquisas/nova", title="Nova Pesquisa | Sociedade Científica",
+             on_load=NovaPesquisaState.load_areas)
+app.add_page(nova_publicacao_page, route="/publicacoes/nova",
+             title="Nova Publicação | Sociedade Científica",
+             on_load=NovaPublicacaoState.load_areas)
+app.add_page(novo_software_page, route="/softwares/novo",
+             title="Novo Software | Sociedade Científica",
+             on_load=NovoSoftwareState.load_areas)
+app.add_page(busca_page, route="/busca", title="Busca | Sociedade Científica")
