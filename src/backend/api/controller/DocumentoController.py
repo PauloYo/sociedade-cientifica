@@ -1,103 +1,102 @@
-from src.backend.api.database.connect import client
+import uuid
+from datetime import datetime
+
 from bson.objectid import ObjectId
+from pymongo import ReturnDocument
+
+from src.backend.api.database.connect import client
 from src.utils.toJson import toJson
+
+
+def _cod():
+    return str(uuid.uuid4())[:8]
+
 
 class DocumentoController:
     def __init__(self):
-        self.db = client['db'] # Conectando ao banco sangue
-        self.colecao = self.db['sociedade-cientifica'] 
+        self.db = client["db"]
+        self.colecao = self.db["sociedade-cientifica"]
 
-    def criar(self, dados):
-
-        nova_pesquisa = {
-            "codArea": gerar_cod(),
-            "nomArea": dados['nomArea'],
-            "pesquisa": [
-                {
-                    "codPesq": gerar_cod(),
-                    "nomPesq": dados['nomPesq'],
-                    "dscPesq": dados['dscPesq'],
-                    "datInicPesq": dados['datInicPesq'],
-                    "datFimPrevPesq": dados['datFimPrevPesq'],
-                    "datFimEfetPesq": dados['datFimEfetPesq'],
-                    "crdn": {
-                        "nomCrdn": dados['nomCrdn'],
-                        "dscEmailCrdn": dados['dscEmailCrdn'],
-                        "nomInstCrdn": dados['nomInstCrdn'],
-                        "endr": {
-                            "dscLogradEndr": dados['dscLogradEndr'],
-                            "numLogradEndr": dados['numLogradEndr'],
-                            "nomBairroEndr": dados['nomBairroEndr'],
-                            "nomCidEndr": dados['nomCidEndr'],
-                            "sglUfEndr": dados['sglUfEndr'],
-                            "numCepEndr": dados['numCepEndr']
-                        }
-                    }
-                }
-            ],
-            "publicacao": [
-                {
-                    "codPubl": gerar_cod(), # Recomendado usar a sua função para gerar IDs únicos aqui também
-                    "nomTitPubl": dados['nomTitPubl1'], # Diferenciados por índice caso venham múltiplos no mesmo formulário
-                    "numAnoPubl": dados['numAnoPubl1'],
-                    "dscTipoPubl": dados['dscTipoPubl1'], # Ex: "artigo"
-                    "autrs": [
-                        { "nomAutr": dados['nomAutr1'] }
-                    ],
-                    "artg": {
-                        "nomPeriodArtg": dados['nomPeriodArtg'],
-                        "numVolumeArtg": dados['numVolumeArtg'],
-                        "numEdicArtg": dados['numEdicArtg']
-                    }
-                },
-                {
-                    "codPubl": gerar_cod(),
-                    "nomTitPubl": dados['nomTitPubl2'],
-                    "numAnoPubl": dados['numAnoPubl2'],
-                    "dscTipoPubl": dados['dscTipoPubl2'], # Ex: "tese"
-                    "autrs": [
-                        { "nomAutr": dados['nomAutr2'] }
-                    ],
-                    "tese": {
-                        "dscGrauTese": dados['dscGrauTese'],
-                        "nomInstTese": dados['nomInstTese']
-                    }
-                }
-            ],
-            "software": [
-                {
-                    "codSoft": gerar_cod(),
-                    "nomSoft": dados['nomSoft'],
-                    "dscSoft": dados['dscSoft'],
-                    "nomRespSoft": dados['nomRespSoft'],
-                    "cont": {
-                        "endr": {
-                            "dscLogradEndr": dados['dscLogradEndrSoft'],
-                            "numLogradEndr": dados['numLogradEndrSoft'],
-                            "nomCidEndr": dados['nomCidEndrSoft'],
-                            "sglUfEndr": dados['sglUfEndrSoft']
-                        }
-                    },
-                    "dscEquipSoft": dados['dscEquipSoft'],
-                    "dscUrlSoft": dados['dscUrlSoft'],
-                    "arqvs": [
-                        {
-                            "nomArqv": dados['nomArqv'],
-                            "dscCaminArqv": dados['dscCaminArqv']
-                        }
-                    ]
-                }
-            ]
+    def criar_documento(self, dados: dict) -> str:
+        doc = {
+            "codArea": _cod(),
+            "nomArea": dados.get("nomArea", "Nova Área"),
+            "pesquisa": [],
+            "publicacao": [],
+            "software": [],
+            "created_at": datetime.now().isoformat(),
         }
+        result = self.colecao.insert_one(doc)
+        return str(result.inserted_id)
 
-        self.colecao.insert_one(new_item)
-        
-        return
+    def adicionar_pesquisa(self, dados: dict) -> bool:
+        item = {
+            "codPesq": _cod(),
+            "nomPesq": dados.get("nomPesq", ""),
+            "dscPesq": dados.get("dscPesq", ""),
+            "datInicPesq": dados.get("datInicPesq", ""),
+            "datFimPrevPesq": dados.get("datFimPrevPesq", ""),
+            "datFimEfetPesq": dados.get("datFimEfetPesq", ""),
+            "crdn": {
+                "nomCrdn": dados.get("nomCrdn", ""),
+                "dscEmailCrdn": dados.get("dscEmailCrdn", ""),
+                "nomInstCrdn": dados.get("nomInstCrdn", ""),
+                "endr": {
+                    "dscLogradEndr": dados.get("dscLogradEndr", ""),
+                    "numLogradEndr": dados.get("numLogradEndr", ""),
+                    "nomBairroEndr": dados.get("nomBairroEndr", ""),
+                    "nomCidEndr": dados.get("nomCidEndr", ""),
+                    "sglUfEndr": dados.get("sglUfEndr", ""),
+                    "numCepEndr": dados.get("numCepEndr", ""),
+                },
+            },
+        }
+        result = self.colecao.update_one(
+            {"codArea": dados.get("codArea")},
+            {"$push": {"pesquisa": item}},
+        )
+        return result.modified_count > 0
+
+    def adicionar_publicacao(self, dados: dict) -> bool:
+        pub = {
+            "codPubl": _cod(),
+            "nomTitPubl": dados.get("nomTitPubl", ""),
+            "numAnoPubl": dados.get("numAnoPubl", ""),
+            "dscTipoPubl": dados.get("dscTipoPubl", "artigo"),
+            "autrs": dados.get("autrs", []),
+        }
+        tipo = dados.get("dscTipoPubl", "artigo")
+        if tipo == "artigo":
+            pub["artg"] = dados.get("artg", {})
+        elif tipo == "tese":
+            pub["tese"] = dados.get("tese", {})
+        elif tipo == "livro":
+            pub["livr"] = dados.get("livr", {})
+
+        result = self.colecao.update_one(
+            {"codArea": dados.get("codArea")},
+            {"$push": {"publicacao": pub}},
+        )
+        return result.modified_count > 0
+
+    def adicionar_software(self, dados: dict) -> bool:
+        item = {
+            "codSoft": _cod(),
+            "nomSoft": dados.get("nomSoft", ""),
+            "dscSoft": dados.get("dscSoft", ""),
+            "nomRespSoft": dados.get("nomRespSoft", ""),
+            "dscEquipSoft": dados.get("dscEquipSoft", ""),
+            "dscUrlSoft": dados.get("dscUrlSoft", ""),
+            "arqvs": dados.get("arqvs", []),
+        }
+        result = self.colecao.update_one(
+            {"codArea": dados.get("codArea")},
+            {"$push": {"software": item}},
+        )
+        return result.modified_count > 0
 
     def listar_todos(self):
-        # Ordenando por Nome da pesquisa ASC
-        itens = self.colecao.find({}).sort({ "pesquisa.nomPesq": 1 })
-
+        itens = self.colecao.find({}).sort({"pesquisa.nomPesq": 1})
         return toJson(itens)
 
     def busca_doc_por_id(self, id_string):

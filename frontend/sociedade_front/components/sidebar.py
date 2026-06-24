@@ -4,6 +4,7 @@ from ..styles import SIDEBAR_WIDTH, SIDEBAR_BG, ALURA_BLUE, ALURA_DARK
 
 NAV_ITEMS = [
     ("Dashboard", "/", "◆"),
+    ("Busca", "/busca", "🔍"),
     ("Áreas", "/areas", "📂"),
     ("Pesquisas", "/pesquisas", "🔬"),
     ("Publicações", "/publicacoes", "📄"),

@@ -50,7 +50,7 @@ def pesquisas_page() -> rx.Component:
                     on_change=PesquisaState.filter_by_area,
                     width="200px",
                 ),
-                rx.button("+ Nova Pesquisa", color_scheme="blue"),
+                rx.link(rx.button("+ Nova Pesquisa", color_scheme="blue"), href="/pesquisas/nova"),
                 width="100%",
                 wrap="wrap",
                 spacing="3",
