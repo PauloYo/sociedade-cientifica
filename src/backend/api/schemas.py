@@ -1,8 +1,16 @@
 from pydantic import BaseModel
-from typing import Optional
 
 
-class CoordenadorEndereco(BaseModel):
+class NovaPesquisa(BaseModel):
+    codArea: str = ""
+    nomPesq: str = ""
+    dscPesq: str = ""
+    datInicPesq: str = ""
+    datFimPrevPesq: str = ""
+    datFimEfetPesq: str = ""
+    nomCrdn: str = ""
+    dscEmailCrdn: str = ""
+    nomInstCrdn: str = ""
     dscLogradEndr: str = ""
     numLogradEndr: str = ""
     nomBairroEndr: str = ""
@@ -11,57 +19,20 @@ class CoordenadorEndereco(BaseModel):
     numCepEndr: str = ""
 
 
-class Coordenador(BaseModel):
-    nomCrdn: str = ""
-    dscEmailCrdn: str = ""
-    nomInstCrdn: str = ""
-    endr: CoordenadorEndereco = CoordenadorEndereco()
-
-
-class NovaPesquisa(BaseModel):
-    codArea: str
-    nomPesq: str
-    dscPesq: str = ""
-    datInicPesq: str = ""
-    datFimPrevPesq: str = ""
-    datFimEfetPesq: str = ""
-    crdn: Coordenador = Coordenador()
-
-
-class ArtigoSub(BaseModel):
-    nomPeriodArtg: str = ""
-    numVolumeArtg: str = ""
-    numEdicArtg: str = ""
-
-
-class TeseSub(BaseModel):
-    dscGrauTese: str = ""
-    nomInstTese: str = ""
-
-
-class LivroSub(BaseModel):
-    edtr: dict = {}
-    locPb: dict = {}
-
-
-class Autor(BaseModel):
-    nomAutr: str
-
-
 class NovaPublicacao(BaseModel):
-    codArea: str
-    nomTitPubl: str
+    codArea: str = ""
+    nomTitPubl: str = ""
     numAnoPubl: str = ""
     dscTipoPubl: str = "artigo"
-    autrs: list[Autor] = []
-    artg: Optional[ArtigoSub] = None
-    tese: Optional[TeseSub] = None
-    livr: Optional[LivroSub] = None
+    autrs: list[dict] = []
+    artg: dict = {}
+    tese: dict = {}
+    livr: dict = {}
 
 
 class NovoSoftware(BaseModel):
-    codArea: str
-    nomSoft: str
+    codArea: str = ""
+    nomSoft: str = ""
     dscSoft: str = ""
     nomRespSoft: str = ""
     dscEquipSoft: str = ""
