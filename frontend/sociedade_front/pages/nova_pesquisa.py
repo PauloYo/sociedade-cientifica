@@ -146,7 +146,7 @@ def nova_pesquisa_page() -> rx.Component:
                     rx.callout("Pesquisa cadastrada com sucesso!", icon="check",
                                color_scheme="green", width="100%")),
             rx.cond(s.error,
-                    rx.callout(s.error, icon="alert_circle",
+                    rx.callout(s.error,
                                color_scheme="red", width="100%")),
             rx.vstack(
                 rx.text("Área", weight="bold", size="2"),
