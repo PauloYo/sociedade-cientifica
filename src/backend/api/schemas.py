@@ -1,5 +1,5 @@
 from pydantic import BaseModel
-
+from typing import Optional, Any, Dict
 
 class NovaPesquisa(BaseModel):
     codArea: str = ""
@@ -18,6 +18,13 @@ class NovaPesquisa(BaseModel):
     sglUfEndr: str = ""
     numCepEndr: str = ""
 
+class PesquisaUpdate(BaseModel):
+    nomPesq: Optional[str] = None
+    dscPesq: Optional[str] = None
+    datInicPesq: Optional[str] = None
+    datFimPrevPesq: Optional[str] = None
+    datFimEfetPesq: Optional[str] = None
+    crdn: Optional[Dict[str, Any]] = None
 
 class NovaPublicacao(BaseModel):
     codArea: str = ""

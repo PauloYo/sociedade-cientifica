@@ -5,7 +5,7 @@ from src.backend.api.controller.DocumentoController import DocumentoController
 from src.backend.api.controller.PesquisaController import PesquisaController
 from src.backend.api.controller.PublicacaoController import PublicacaoController
 from src.backend.api.controller.SoftwareController import SoftwareController
-from src.backend.api.schemas import NovaPesquisa, NovaPublicacao, NovoSoftware, NovaArea
+from src.backend.api.schemas import NovaPesquisa, NovaPublicacao, NovoSoftware, NovaArea, PesquisaUpdate
 from src.backend.api.utils.serializer import parse_mongo
 
 router = APIRouter()
@@ -65,6 +65,12 @@ def listar_pesquisas():
     lista = pesqController.listar_todos()
     return {"status": "ok", "response": parse_mongo(lista)}
 
+@router.get("/publicacoes")
+def listar_publicacoes():
+    publController = PublicacaoController()
+    result = publController.listar_todos()
+    return {"status": "ok", "response": parse_mongo(result)}
+
 
 @router.get("/areas")
 def listar_areas():
@@ -99,3 +105,24 @@ def buscar_area_id(id: str):
     areaController = AreaController()
     item = areaController.busca_id(id)
     return {"status": "ok", "response": parse_mongo(item) if item else None}
+
+@router.put("/pesquisa/{cod_area}/{cod_pesq}")
+def atualizar_pesquisa(cod_area: str, cod_pesq: str, dados: PesquisaUpdate):
+    try:
+        pesqController = PesquisaController()
+        resultado = pesqController.atualizar_pesquisa(
+            cod_area=cod_area,
+            cod_pesq=cod_pesq,
+            dados=dados.dict(exclude_none=True)
+        )
+
+        if resultado["matched"] == 0:
+            return {"status": "error", "msg": "Pesquisa não encontrada"}
+
+        return {
+            "message": "Pesquisa atualizada com sucesso",
+            "resultado": resultado
+        }
+
+    except Exception as e:
+        return {"status": "error", "msg": "Erro interno [500]"}
