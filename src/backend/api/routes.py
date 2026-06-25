@@ -5,7 +5,16 @@ from src.backend.api.controller.DocumentoController import DocumentoController
 from src.backend.api.controller.PesquisaController import PesquisaController
 from src.backend.api.controller.PublicacaoController import PublicacaoController
 from src.backend.api.controller.SoftwareController import SoftwareController
-from src.backend.api.schemas import NovaPesquisa, NovaPublicacao, NovoSoftware, NovaArea, PesquisaUpdate
+from src.backend.api.schemas import (
+    AreaUpdate,
+    NovaArea,
+    NovaPesquisa,
+    NovaPublicacao,
+    NovoSoftware,
+    PesquisaUpdate,
+    PublicacaoUpdate,
+    SoftwareUpdate,
+)
 from src.backend.api.utils.serializer import parse_mongo
 
 router = APIRouter()
@@ -44,6 +53,8 @@ def criar_publicacao(dados: NovaPublicacao):
 
 
 @router.post("/softwares-tutoriais")
+@router.post("/software")
+@router.post("/softwares")
 def criar_software(dados: NovoSoftware):
     ctrl = DocumentoController()
     ok = ctrl.adicionar_software(dados.model_dump())
@@ -80,6 +91,8 @@ def listar_areas():
 
 
 @router.get("/softwares-tutoriais")
+@router.get("/software")
+@router.get("/softwares")
 def listar_softwares_tutoriais():
     softwareController = SoftwareController()
     lista = softwareController.listar_todos()
@@ -106,6 +119,40 @@ def buscar_area_id(id: str):
     item = areaController.busca_id(id)
     return {"status": "ok", "response": parse_mongo(item) if item else None}
 
+@router.get("/pesquisa/{id}")
+def buscar_pesquisa_id(id: str):
+    pesqController = PesquisaController()
+    item = pesqController.busca_pesquisa_por_id(id)
+    return {"status": "ok", "response": parse_mongo(item) if item else None}
+
+@router.get("/publicacao/{id}")
+def buscar_publicacao_id(id: str):
+    publController = PublicacaoController()
+    item = publController.busca_publicacao_por_id(id)
+    return {"status": "ok", "response": parse_mongo(item) if item else None}
+
+@router.get("/softwares-tutoriais/{id}")
+@router.get("/software/{id}")
+@router.get("/softwares/{id}")
+def buscar_software_id(id: str):
+    softwareController = SoftwareController()
+    item = softwareController.busca_software_por_id(id)
+    return {"status": "ok", "response": parse_mongo(item) if item else None}
+
+@router.put("/area/{id}")
+@router.patch("/area/{id}")
+def atualizar_area(id: str, dados: AreaUpdate):
+    areaController = AreaController()
+    resultado = areaController.atualizar_area(
+        id=id,
+        dados=dados.model_dump(exclude_none=True)
+    )
+
+    if resultado["matched"] == 0:
+        return {"status": "error", "msg": "Área não encontrada ou nenhum campo enviado"}
+
+    return {"status": "ok", "resultado": resultado}
+
 @router.put("/pesquisa/{cod_area}/{cod_pesq}")
 def atualizar_pesquisa(cod_area: str, cod_pesq: str, dados: PesquisaUpdate):
     try:
@@ -126,3 +173,94 @@ def atualizar_pesquisa(cod_area: str, cod_pesq: str, dados: PesquisaUpdate):
 
     except Exception as e:
         return {"status": "error", "msg": "Erro interno [500]"}
+
+@router.put("/pesquisa/{id}")
+@router.patch("/pesquisa/{id}")
+def atualizar_pesquisa_id(id: str, dados: PesquisaUpdate):
+    pesqController = PesquisaController()
+    resultado = pesqController.atualizar_pesquisa_por_id(
+        cod_pesq=id,
+        dados=dados.model_dump(exclude_none=True)
+    )
+
+    if resultado["matched"] == 0:
+        return {"status": "error", "msg": "Pesquisa não encontrada ou nenhum campo enviado"}
+
+    return {"status": "ok", "resultado": resultado}
+
+@router.put("/publicacao/{id}")
+@router.patch("/publicacao/{id}")
+def atualizar_publicacao_id(id: str, dados: PublicacaoUpdate):
+    publController = PublicacaoController()
+    resultado = publController.atualizar_publicacao(
+        cod_publ=id,
+        dados=dados.model_dump(exclude_none=True)
+    )
+
+    if resultado["matched"] == 0:
+        return {"status": "error", "msg": "Publicação não encontrada ou nenhum campo enviado"}
+
+    return {"status": "ok", "resultado": resultado}
+
+@router.put("/softwares-tutoriais/{id}")
+@router.patch("/softwares-tutoriais/{id}")
+@router.put("/software/{id}")
+@router.patch("/software/{id}")
+@router.put("/softwares/{id}")
+@router.patch("/softwares/{id}")
+def atualizar_software_id(id: str, dados: SoftwareUpdate):
+    softwareController = SoftwareController()
+    resultado = softwareController.atualizar_software(
+        cod_soft=id,
+        dados=dados.model_dump(exclude_none=True)
+    )
+
+    if resultado["matched"] == 0:
+        return {"status": "error", "msg": "Software não encontrado ou nenhum campo enviado"}
+
+    return {"status": "ok", "resultado": resultado}
+    
+# --- DELETE (Remove) ---
+
+@router.delete("/area/{id}")
+def excluir_area(id: str):
+    areaController = AreaController()
+    resultado = areaController.excluir_area(id)
+
+    if resultado["deleted"] == 0:
+        return {"status": "error", "msg": "Área não encontrada"}
+
+    return {"status": "ok", "resultado": resultado}
+
+@router.delete("/pesquisa/{id}")
+def excluir_pesquisa(id: str):
+    pesqController = PesquisaController()
+    resultado = pesqController.excluir_pesquisa(id)
+
+    if resultado["matched"] == 0:
+        return {"status": "error", "msg": "Pesquisa não encontrada"}
+
+    return {"status": "ok", "resultado": resultado}
+
+@router.delete("/publicacao/{id}")
+def excluir_publicacao(id: str):
+    publController = PublicacaoController()
+    resultado = publController.excluir_publicacao(id)
+
+    if resultado["matched"] == 0:
+        return {"status": "error", "msg": "Publicação não encontrada"}
+
+    return {"status": "ok", "resultado": resultado}
+
+@router.delete("/softwares-tutoriais/{id}")
+@router.delete("/software/{id}")
+@router.delete("/softwares/{id}")
+def excluir_software(id: str):
+    softwareController = SoftwareController()
+    resultado = softwareController.excluir_software(id)
+
+    if resultado["matched"] == 0:
+        return {"status": "error", "msg": "Software não encontrado"}
+
+    return {"status": "ok", "resultado": resultado}
+

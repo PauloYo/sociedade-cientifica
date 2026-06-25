@@ -24,6 +24,13 @@ class PesquisaController:
         })
         return toJson(item)
 
+    def busca_pesquisa_por_id(self, cod_pesq):
+        item = self.colecao.find_one(
+            {"pesquisa.codPesq": cod_pesq},
+            {"_id": 0, "codArea": 1, "nomArea": 1, "pesquisa.$": 1}
+        )
+        return toJson(item)
+
     def busca_doc_por_nome_desc_pesquisa(self, nome):
         itens = self.colecao.find(
             { 
@@ -117,6 +124,74 @@ class PesquisaController:
             ]
         )
 
+        return {
+            "matched": resultado.matched_count,
+            "modified": resultado.modified_count
+        }
+
+    def atualizar_pesquisa_por_id(self, cod_pesq, dados):
+        update_fields = {}
+
+        if "nomPesq" in dados:
+            update_fields["pesquisa.$[p].nomPesq"] = dados["nomPesq"]
+
+        if "dscPesq" in dados:
+            update_fields["pesquisa.$[p].dscPesq"] = dados["dscPesq"]
+
+        if "datInicPesq" in dados:
+            update_fields["pesquisa.$[p].datInicPesq"] = dados["datInicPesq"]
+
+        if "datFimPrevPesq" in dados:
+            update_fields["pesquisa.$[p].datFimPrevPesq"] = dados["datFimPrevPesq"]
+
+        if "datFimEfetPesq" in dados:
+            update_fields["pesquisa.$[p].datFimEfetPesq"] = dados["datFimEfetPesq"]
+
+        if "crdn" in dados:
+            crdn = dados["crdn"]
+
+            if "nomCrdn" in crdn:
+                update_fields["pesquisa.$[p].crdn.nomCrdn"] = crdn["nomCrdn"]
+
+            if "dscEmailCrdn" in crdn:
+                update_fields["pesquisa.$[p].crdn.dscEmailCrdn"] = crdn["dscEmailCrdn"]
+
+            if "nomInstCrdn" in crdn:
+                update_fields["pesquisa.$[p].crdn.nomInstCrdn"] = crdn["nomInstCrdn"]
+
+            if "endr" in crdn:
+                endr = crdn["endr"]
+
+                for campo in [
+                    "dscLogradEndr",
+                    "numLogradEndr",
+                    "nomBairroEndr",
+                    "nomCidEndr",
+                    "sglUfEndr",
+                    "numCepEndr"
+                ]:
+                    if campo in endr:
+                        update_fields[f"pesquisa.$[p].crdn.endr.{campo}"] = endr[campo]
+
+        if not update_fields:
+            return {"matched": 0, "modified": 0, "message": "Nenhum campo para atualizar"}
+
+        resultado = self.colecao.update_one(
+            {"pesquisa.codPesq": cod_pesq},
+            {"$set": update_fields},
+            array_filters=[{"p.codPesq": cod_pesq}]
+        )
+
+        return {
+            "matched": resultado.matched_count,
+            "modified": resultado.modified_count
+        }
+
+    def excluir_pesquisa(self, cod_pesq):
+        resultado = self.colecao.update_one(
+            {"pesquisa.codPesq": cod_pesq},
+            {"$pull": {"pesquisa": {"codPesq": cod_pesq}}}
+        )
         return {
             "matched": resultado.matched_count,
             "modified": resultado.modified_count

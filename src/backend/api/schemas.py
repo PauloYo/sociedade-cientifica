@@ -26,6 +26,10 @@ class PesquisaUpdate(BaseModel):
     datFimEfetPesq: Optional[str] = None
     crdn: Optional[Dict[str, Any]] = None
 
+
+class AreaUpdate(BaseModel):
+    nomArea: Optional[str] = None
+
 class NovaPublicacao(BaseModel):
     codArea: str = ""
     nomTitPubl: str = ""
@@ -35,6 +39,16 @@ class NovaPublicacao(BaseModel):
     artg: dict = {}
     tese: dict = {}
     livr: dict = {}
+
+
+class PublicacaoUpdate(BaseModel):
+    nomTitPubl: Optional[str] = None
+    numAnoPubl: Optional[str] = None
+    dscTipoPubl: Optional[str] = None
+    autrs: Optional[list[dict]] = None
+    artg: Optional[dict] = None
+    tese: Optional[dict] = None
+    livr: Optional[dict] = None
 
 
 class NovaArea(BaseModel):
@@ -49,3 +63,12 @@ class NovoSoftware(BaseModel):
     dscEquipSoft: str = ""
     dscUrlSoft: str = ""
     arqvs: list[dict] = []
+
+
+class SoftwareUpdate(BaseModel):
+    nomSoft: Optional[str] = None
+    dscSoft: Optional[str] = None
+    nomRespSoft: Optional[str] = None
+    dscEquipSoft: Optional[str] = None
+    dscUrlSoft: Optional[str] = None
+    arqvs: Optional[list[dict]] = None
