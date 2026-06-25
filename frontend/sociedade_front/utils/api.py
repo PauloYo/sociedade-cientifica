@@ -1,6 +1,9 @@
 import httpx
+from os import getenv
+from dotenv import load_dotenv
 
-BACKEND_URL = "http://localhost:8001"
+load_dotenv()
+BACKEND_URL = getenv("BACKEND_URL")
 
 
 async def get(endpoint: str) -> dict:

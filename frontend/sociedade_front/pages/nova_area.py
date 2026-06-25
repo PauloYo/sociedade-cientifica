@@ -22,6 +22,8 @@ class NovaAreaState(rx.State):
             if resp.get("status") == "ok":
                 self.success = True
                 self.nomArea = ""
+            elif resp.get("status") == "error":
+                self.error = resp.get("msg")
             else:
                 self.error = "Erro ao criar área"
         except Exception as e:
@@ -31,11 +33,12 @@ class NovaAreaState(rx.State):
 
 def nova_area_page() -> rx.Component:
     s = NovaAreaState
+    # s.success = False
     return page_wrapper(
         breadcrumbs_items=[("Áreas", "/areas"), ("Nova Área", None)],
         children=[
             rx.heading("Nova Área", **PAGE_HEADING),
-            rx.cond(s.success,
+            rx.cond(s.success == True,
                     rx.callout("Área cadastrada com sucesso!", icon="check",
                                color_scheme="green", width="100%")),
             rx.cond(s.error,

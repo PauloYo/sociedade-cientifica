@@ -15,8 +15,10 @@ router = APIRouter()
 
 @router.post("/area")
 def criar_area(dados: NovaArea):
+    data = dados.model_dump()
+    if (data.get("nomArea") == ""): return {"status": "error", "msg": "Dados inválidos"}
     ctrl = DocumentoController()
-    id_ = ctrl.criar_documento(dados.model_dump())
+    id_ = ctrl.criar_documento(data)
     return {"status": "ok", "id": id_}
 
 

@@ -16,8 +16,9 @@ class AreaController:
         return toJson(itens)
 
     def busca_id(self, id):
+        
         item = self.colecao.find_one({'codArea': id}, {
-            'codArea':0,
+            'codArea':1,
             'nomArea':1,
             'pesquisa':1,
             "publicacao": 1,
