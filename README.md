@@ -6,7 +6,7 @@ Uma sociedade científica deseja manter um cadastro de pesquisas, contendo o nom
 
 ---
 
-## Como rodar
+## Como rodar a API
 
 ### Pré-requisitos
 
@@ -26,32 +26,29 @@ source .venv/bin/activate # Linux/macOS
 uv pip install -r requirements.txt
 ```
 
-### Backend (FastAPI + MongoDB)
+### Configuração
 
 ```bash
-# Configurar variável de ambiente
 # Crie src/backend/.env com:
 # MONGODB_URI=mongodb+srv://<user>:<pass>@<cluster>/<db>?retryWrites=true&w=majority
-
-# Iniciar servidor (porta 8000)
-python main.py
 ```
 
-### Frontend (Reflex)
+### Iniciar servidor
 
 ```bash
-# Navegar até a pasta do frontend
-cd frontend
-
-# Iniciar servidor de desenvolvimento (porta 3000)
-reflex run
+python main.py
 ```
 
 ### Acessar
 
-- **Frontend:** http://localhost:3000
 - **API:** http://localhost:8000
 - **Docs da API:** http://localhost:8000/docs
+
+---
+
+## Frontend
+
+O frontend foi separado deste repositório. Este projeto mantém apenas o backend FastAPI e a documentação/modelagem relacionada.
 
 ---
 
@@ -66,12 +63,6 @@ sociedade-cientifica/
 │   ├── controller/      # Lógica de negócio
 │   ├── database/        # Conexão MongoDB
 │   └── utils/           # Serialização
-├── frontend/            # Reflex app
-│   ├── rxconfig.py
-│   └── sociedade_front/
-│       ├── components/  # Sidebar, breadcrumbs, cards
-│       ├── pages/       # Dashboard, Áreas, Pesquisas, etc.
-│       └── state/       # Estados Reflex
 ├── models/              # SQL e NoSQL schemas
 └── docs/                # Documentação do modelo
 ```
